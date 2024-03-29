@@ -35,7 +35,7 @@ from fastchat.model.model_falcon import generate_stream_falcon
 from fastchat.model.model_yuan2 import generate_stream_yuan2
 from fastchat.model.model_exllama import generate_stream_exllama
 from fastchat.model.model_xfastertransformer import generate_stream_xft
-from fastchat.model.model_cllm import generate_stream_cllm
+# from fastchat.model.model_cllm import generate_stream_cllm
 
 from fastchat.model.monkey_patch_non_inplace import (
     replace_llama_attn_with_non_inplace_operations,
@@ -409,8 +409,8 @@ def get_generate_stream_function(model: torch.nn.Module, model_path: str):
         return generate_stream_xft
     elif is_yuan:
         return generate_stream_yuan2
-    elif is_cllm:
-        return generate_stream_cllm
+    # elif is_cllm:
+    #     return generate_stream_cllm
 
     elif peft_share_base_weights and is_peft:
         # Return a curried stream function that loads the right adapter
@@ -449,8 +449,8 @@ def get_generate_stream_function(model: torch.nn.Module, model_path: str):
                 generate_stream_function = generate_stream_xft
             elif is_yuan:
                 generate_stream_function = generate_stream_yuan2
-            elif is_cllm:
-                generate_stream_function = generate_stream_cllm
+            # elif is_cllm:
+            #     generate_stream_function = generate_stream_cllm
             for x in generate_stream_function(
                 model,
                 tokenizer,

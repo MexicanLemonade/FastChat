@@ -295,7 +295,7 @@ pip3 install -e ".[train]"
 
 - You can use the following command to train Vicuna-7B with 4 x A100 (40GB). Update `--model_name_or_path` with the actual path to Llama weights and `--data_path` with the actual path to data.
 ```bash
-torchrun --nproc_per_node=4 --master_port=20001 fastchat/train/train_mem.py \
+torchrun --nproc_per_node=2 --master_port=20001 fastchat/train/train_mem.py \
     --model_name_or_path meta-llama/Llama-2-7b-hf \
     --data_path data/dummy_conversation.json \
     --bf16 True \
